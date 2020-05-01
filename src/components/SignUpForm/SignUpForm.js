@@ -44,13 +44,16 @@ export default function SingInForm(props) {
       setLoading(true);
       try {
         const response = await signUpAPI(formData);
+
         if (response.status >= 200 && response.status < 300) {
           toast.success("Te has registrado correctamente!");
           setShowModal(false);
         } else if (response.status === 400) {
-          toast.error("Ese email ya esta en uso");
+          const data = await response.text();
+          toast.error(data);
         }
       } catch (err) {
+        console.log(err);
         toast.error("El servidor no esta disponible");
       }
       setLoading(false);
