@@ -1,0 +1,27 @@
+@import "../../../scss/index.scss";
+
+.basic-modal {
+  .modal-content {
+    background-color: $primary-black;
+    border-radius: 20px;
+
+    .modal-header {
+      border: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .modal.title {
+        margin: 0 auto;
+      }
+    }
+
+    .modal-body {
+      padding: 20px;
+    }
+
+    .logo {
+      font-size: 7vh;
+      color: white;
+    }
+  }
+}

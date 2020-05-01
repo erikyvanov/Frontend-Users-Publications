@@ -1,0 +1,64 @@
+@import "../../scss/index.scss";
+
+.Login {
+  &__left {
+    background-color: $primary-black;
+
+    overflow: hidden;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    h1 {
+      font-size: 10vh;
+      color: rgba(255, 255, 255, 0.9);
+    }
+    h2 {
+      font-size: 4vh;
+      color: #6f6f6f;
+
+      svg {
+        margin: 1vw;
+      }
+    }
+    h3 {
+      font-size: 3vh;
+      display: flex;
+      align-items: center;
+      color: rgba(255, 255, 255, 0.6);
+    }
+    img {
+      height: 5vh;
+      margin: 1vh;
+    }
+  }
+
+  &__right {
+    background-color: $primary;
+
+    overflow: hidden;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .logo {
+      color: $primary-black;
+      font-size: 20vmax;
+    }
+
+    button {
+      display: block;
+      border-radius: 20px;
+      width: 40vh;
+      padding: 20px 0;
+      margin: 10px 0;
+
+      font-size: 2vh;
+    }
+  }
+}
