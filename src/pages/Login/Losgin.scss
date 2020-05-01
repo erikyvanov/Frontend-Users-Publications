@@ -60,5 +60,23 @@
 
       font-size: 2vh;
     }
+
+    .btn.btn-success {
+      background-color: $primary-black;
+      border-color: black;
+
+      &:hover {
+        background-color: $primaryButton;
+        border-color: $primaryButton;
+      }
+    }
+
+    .btn.btn-outline-success {
+      color: $primary-black;
+
+      &:hover {
+        color: white;
+      }
+    }
   }
 }

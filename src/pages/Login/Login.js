@@ -30,7 +30,7 @@ export default function Login() {
       <Container className="Login" fluid>
         <Row>
           <Left />
-          <Right openModal={openModal} />
+          <Right openModal={openModal} setShowModal={setShowModal} />
         </Row>
       </Container>
       <BasicModal show={showModal} setShow={setShowModal}>
@@ -91,7 +91,9 @@ const Right = (props) => (
       </Button>
       <Button
         variant="outline-success"
-        onClick={() => props.openModal(<SignUpForm />)}
+        onClick={() =>
+          props.openModal(<SignUpForm setShowModal={props.setShowModal} />)
+        }
       >
         Regístrate
       </Button>
