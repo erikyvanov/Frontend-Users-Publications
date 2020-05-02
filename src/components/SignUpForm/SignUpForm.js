@@ -4,7 +4,7 @@ import { Form, Row, Col, Button, Spinner } from "react-bootstrap";
 import { values, size } from "lodash";
 import { toast } from "react-toastify";
 import { isEmailValid } from "../../utils/validationFunctions";
-import { signUpAPI } from "../../api/signUpAPI";
+import { signUpAPI } from "../../api/auth";
 
 export default function SingInForm(props) {
   const { setShowModal } = props;

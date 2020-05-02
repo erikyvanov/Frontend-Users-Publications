@@ -1,5 +1,21 @@
+import { values, size } from "lodash";
+
 export function isEmailValid(email) {
   // eslint-disable-next-line no-useless-escape
   const emailValid = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
   return emailValid.test(String(email).toLowerCase());
+}
+
+export function fullFields(formData) {
+  let validCount = 0;
+  values(formData).some((value) => {
+    value && validCount++;
+    return null;
+  });
+
+  if (validCount !== size(formData)) {
+    return false;
+  } else {
+    return true;
+  }
 }

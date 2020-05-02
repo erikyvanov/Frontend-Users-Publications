@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Login from "./pages/Login";
 import { ToastContainer } from "react-toastify";
+import { AuthContext } from "./utils/contexts";
+import { isUserLogedAPI } from "./api/auth";
 
 export default function App() {
-  // const [user, setUser] = useState(null);
-  var user = null;
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    setUser(isUserLogedAPI());
+  }, []);
+
   return (
-    <div>
+    <AuthContext.Provider value={user}>
       {user ? <h1>Estas logueado.</h1> : <Login />}
       <ToastContainer
         position="top-right"
@@ -19,6 +25,6 @@ export default function App() {
         draggable
         pauseOnHover
       />
-    </div>
+    </AuthContext.Provider>
   );
 }

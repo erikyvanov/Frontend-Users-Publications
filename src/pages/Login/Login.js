@@ -4,6 +4,7 @@ import "./Losgin.scss";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import BasicModal from "../../components/modals/BasicModal";
 import SignUpForm from "../../components/SignUpForm";
+import SignInForm from "../../components/SignInForm";
 
 import JWT_IMG from "./JWT.png";
 import GO_IMG from "./Go.png";
@@ -85,7 +86,9 @@ const Right = (props) => (
       <h1>Entra ahora mismo</h1>
       <Button
         variant="success"
-        onClick={() => props.openModal(<h2>Formilario de inicio de sesion</h2>)}
+        onClick={() =>
+          props.openModal(<SignInForm setShowModal={props.setShowModal} />)
+        }
       >
         Iniciar Sesión
       </Button>
