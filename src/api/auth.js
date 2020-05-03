@@ -62,19 +62,23 @@ export function logoutAPI() {
 }
 
 export function isUserLogedAPI() {
-  const token = getTokenAPI();
+  try {
+    const token = getTokenAPI();
 
-  if (!token) {
+    if (!token) {
+      logoutAPI();
+      return null;
+    }
+
+    if (isExpired(token)) {
+      logoutAPI();
+      return null;
+    }
+    return jwtDecode(token);
+  } catch (err) {
     logoutAPI();
     return null;
   }
-
-  if (isExpired(token)) {
-    logoutAPI();
-    return null;
-  }
-
-  return jwtDecode(token);
 }
 
 export function isExpired(token) {

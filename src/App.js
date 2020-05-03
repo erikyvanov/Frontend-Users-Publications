@@ -1,6 +1,6 @@
 // import React, { useState, useEffect } from "react";
 // import Login from "./pages/Login";
-// import { ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { AuthContext } from "./utils/contexts";
 import { isUserLogedAPI } from "./api/auth";
 import React, { useEffect, useState } from "react";
@@ -16,6 +16,17 @@ export default function App() {
   return (
     <AuthContext.Provider value={user}>
       <Router />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </AuthContext.Provider>
   );
   // const [user, setUser] = useState(null);
