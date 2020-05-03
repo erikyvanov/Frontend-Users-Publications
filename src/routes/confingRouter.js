@@ -1,4 +1,4 @@
-import Home from "../pages/Home";
+import Root from "../pages/Root";
 import Login from "../pages/Login";
 import Error404 from "../pages/Error404";
 
@@ -6,7 +6,7 @@ export default [
   {
     path: "/",
     exact: true,
-    page: Home,
+    page: Root,
   },
   {
     path: "/login",

@@ -1,0 +1,40 @@
+@import "../../scss/index.scss";
+
+.left-menu {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__logo {
+    color: white;
+    font-size: 8vw;
+
+    margin: 3vh 0;
+
+    svg {
+      font-size: 8vw;
+      color: $primary-gray;
+    }
+  }
+
+  a {
+    color: $primary-l;
+    font-size: 2vw;
+
+    margin: 3vh 0;
+
+    svg {
+      margin-right: 5px;
+    }
+
+    &:hover {
+      text-decoration: none;
+      color: $primaryButton;
+    }
+  }
+}

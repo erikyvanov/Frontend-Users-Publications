@@ -1,5 +1,11 @@
 import React from "react";
 
+import BasicLayout from "../../layout/BasicLayout";
+
 export default function Error404() {
-  return <div>Error404</div>;
+  return (
+    <BasicLayout>
+      <div>Error404</div>
+    </BasicLayout>
+  );
 }
