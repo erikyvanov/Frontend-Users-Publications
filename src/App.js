@@ -1,13 +1,23 @@
 // import React, { useState, useEffect } from "react";
 // import Login from "./pages/Login";
 // import { ToastContainer } from "react-toastify";
-// import { AuthContext } from "./utils/contexts";
-// import { isUserLogedAPI } from "./api/auth";
-import React from "react";
+import { AuthContext } from "./utils/contexts";
+import { isUserLogedAPI } from "./api/auth";
+import React, { useEffect, useState } from "react";
 import Router from "./routes/Router";
 
 export default function App() {
-  return <Router />;
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    setUser(isUserLogedAPI());
+  }, []);
+
+  return (
+    <AuthContext.Provider value={user}>
+      <Router />
+    </AuthContext.Provider>
+  );
   // const [user, setUser] = useState(null);
 
   // useEffect(() => {
