@@ -17,7 +17,11 @@ import {
   faAlignLeft,
 } from "@fortawesome/free-solid-svg-icons";
 
+import useAuth from "../../hooks/useAuth";
+import { Redirect } from "react-router-dom";
+
 export default function Login() {
+  const user = useAuth();
   const [showModal, setShowModal] = useState(false);
   const [content, setContent] = useState(null);
 
@@ -26,7 +30,9 @@ export default function Login() {
     setContent(content);
   };
 
-  return (
+  return user ? (
+    <Redirect to="/" />
+  ) : (
     <>
       <Container className="Login" fluid>
         <Row>
