@@ -27,6 +27,7 @@ export default function SignInForm(props) {
         } else {
           setTokenAPI(data.token);
           props.setShowModal(false);
+          window.location.reload();
         }
       } catch (err) {
         toast.err("El servidor no esta disponible");
