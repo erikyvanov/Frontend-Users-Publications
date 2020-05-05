@@ -5,6 +5,9 @@ import { isEmailValid, fullFields } from "../../utils/validationFunctions";
 import { signInAPI, setTokenAPI } from "../../api/auth";
 import "./SignInForm.scss";
 
+import useAuth from "../../hooks/useAuth";
+import { isUserLogedAPI } from "../../api/auth";
+
 export default function SignInForm(props) {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState(initialData());
@@ -27,7 +30,8 @@ export default function SignInForm(props) {
         } else {
           setTokenAPI(data.token);
           props.setShowModal(false);
-          window.location.reload();
+
+          u.setUser(isUserLogedAPI());
         }
       } catch (err) {
         toast.err("El servidor no esta disponible");
@@ -40,6 +44,8 @@ export default function SignInForm(props) {
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  const u = useAuth();
 
   return (
     <div className="sign-in-form">

@@ -14,12 +14,15 @@ import {
 import "./LeftMenu.scss";
 
 import { logoutAPI } from "../../api/auth";
+import useAuth from "../../hooks/useAuth";
 
 export default function LeftMenu() {
   const logout = () => {
     logoutAPI();
-    window.location.reload();
+    u.setUser(null);
   };
+
+  const u = useAuth();
   return (
     <div className="left-menu">
       <Button className="left-menu__logo" variant="light">

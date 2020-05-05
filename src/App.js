@@ -5,6 +5,7 @@ import { AuthContext } from "./utils/contexts";
 import { isUserLogedAPI } from "./api/auth";
 import React, { useEffect, useState } from "react";
 import Router from "./routes/Router";
+import Login from "./pages/Login";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -14,8 +15,8 @@ export default function App() {
   }, []);
 
   return (
-    <AuthContext.Provider value={user}>
-      <Router />
+    <AuthContext.Provider value={{ user, setUser }}>
+      {user ? <Router /> : <Login />}
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -29,26 +30,4 @@ export default function App() {
       />
     </AuthContext.Provider>
   );
-  // const [user, setUser] = useState(null);
-
-  // useEffect(() => {
-  //   setUser(isUserLogedAPI());
-  // }, []);
-
-  // return (
-  //   <AuthContext.Provider value={user}>
-  //     {user ? <h1>Estas logueado.</h1> : <Login />}
-  //     <ToastContainer
-  //       position="top-right"
-  //       autoClose={5000}
-  //       hideProgressBar
-  //       newestOnTop={false}
-  //       closeOnClick
-  //       rtl={false}
-  //       pauseOnFocusLoss
-  //       draggable
-  //       pauseOnHover
-  //     />
-  //   </AuthContext.Provider>
-  // );
 }
