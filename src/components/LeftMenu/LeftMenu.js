@@ -13,7 +13,13 @@ import {
 
 import "./LeftMenu.scss";
 
+import { logoutAPI } from "../../api/auth";
+
 export default function LeftMenu() {
+  const logout = () => {
+    logoutAPI();
+    window.location.reload();
+  };
   return (
     <div className="left-menu">
       <Button className="left-menu__logo" variant="light">
@@ -34,7 +40,7 @@ export default function LeftMenu() {
           <FontAwesomeIcon icon={faUser} />
           Perfil
         </Link>
-        <Link to="/logout" className="left-menu__b">
+        <Link onClick={logout} to="/" className="left-menu__b">
           <FontAwesomeIcon icon={faPowerOff} />
           Cerrar Sesión
         </Link>
