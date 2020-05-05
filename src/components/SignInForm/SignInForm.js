@@ -12,7 +12,23 @@ export default function SignInForm(props) {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState(initialData());
 
-  const onSubmit = async (e) => {
+  const login = async () => {
+    try {
+      const data = await signInAPI(formData);
+
+      if (data.error) {
+        toast.error(data.message);
+      } else {
+        setTokenAPI(data.token);
+        props.setShowModal(false);
+        u.setUser(isUserLogedAPI());
+      }
+    } catch (err) {
+      toast.err("El servidor no esta disponible");
+    }
+  };
+
+  const onSubmit = (e) => {
     e.preventDefault();
 
     setLoading(true);
@@ -22,20 +38,7 @@ export default function SignInForm(props) {
     } else if (!isEmailValid(formData.email)) {
       toast.warn("El email no es valido");
     } else {
-      try {
-        const data = await signInAPI(formData);
-
-        if (data.error) {
-          toast.error(data.message);
-        } else {
-          setTokenAPI(data.token);
-          props.setShowModal(false);
-
-          u.setUser(isUserLogedAPI());
-        }
-      } catch (err) {
-        toast.err("El servidor no esta disponible");
-      }
+      login();
     }
 
     setLoading(false);
