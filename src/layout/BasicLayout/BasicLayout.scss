@@ -9,6 +9,9 @@
 
   &__menu {
     background-color: $primary-black;
+
+    display: flex;
+    justify-content: flex-end;
   }
 
   &__content {
@@ -16,7 +19,7 @@
     overflow-y: scroll;
     padding: 0 !important;
 
-    border-left: 1px solid $primaryButton;
+    // border-left: 1px solid $primaryButton;
 
     &::-webkit-scrollbar {
       display: none;

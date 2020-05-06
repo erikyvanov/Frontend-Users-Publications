@@ -1,0 +1,41 @@
+@import "../../scss/index.scss";
+
+.user {
+  &__title {
+    background-color: $primary-black;
+    display: flex;
+    justify-content: center;
+
+    padding: 10px;
+
+    h2 {
+      color: white;
+      font-size: 4vw;
+    }
+    img {
+      margin: 0 2vw;
+    }
+  }
+
+  &__btns {
+    button {
+      transition: transfrom, 0.4s;
+      position: relative;
+      top: 9vw;
+      left: 6vw;
+
+      font-size: 2vw;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+      &:active {
+        transform: scale(0.9);
+      }
+    }
+  }
+
+  &__info {
+    background-color: $primary-gray;
+  }
+}

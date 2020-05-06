@@ -5,20 +5,54 @@
   align-items: center;
   flex-direction: column;
 
+  margin: 0 2vw 0 0;
+
   &__container {
     display: flex;
     flex-direction: column;
   }
 
   &__logo {
-    color: white;
-    font-size: 8vw;
+    cursor: pointer;
+    color: $primaryButton;
 
     margin: 3vh 0;
 
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
     svg {
       font-size: 8vw;
-      color: $primary-gray;
+      color: $primaryButton;
+      transition: color, 0.5s;
+    }
+
+    h3 {
+      font-size: 2vw;
+      cursor: pointer;
+    }
+
+    transition: color, transform, 0.5s;
+    &:hover {
+      transform: scale(1.2);
+      text-decoration: none;
+      color: $primary-l;
+
+      svg {
+        font-size: 8vw;
+        color: $primary-l;
+      }
+    }
+
+    &:active {
+      transform: scale(0.9);
+      color: $primaryButton;
+
+      svg {
+        font-size: 8vw;
+        color: $primaryButton;
+      }
     }
   }
 
@@ -27,6 +61,7 @@
     font-size: 2vw;
 
     margin: 3vh 0;
+    transition: transform, color, 0.5s;
 
     svg {
       margin-right: 5px;
@@ -35,6 +70,14 @@
     &:hover {
       text-decoration: none;
       color: $primaryButton;
+
+      transform: scale(1.1);
+    }
+
+    &:active {
+      transform: scale(0.9);
+      text-decoration: none;
+      color: white;
     }
   }
 }
