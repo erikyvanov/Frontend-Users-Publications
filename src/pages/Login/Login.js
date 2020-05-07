@@ -42,7 +42,7 @@ export default function Login() {
 }
 
 const Left = () => (
-  <Col className="Login__left" xs={6}>
+  <Col className="Login__left" xs={12} md={6}>
     <div>
       <h1>
         <FontAwesomeIcon icon={faHandPeace} />
@@ -78,7 +78,7 @@ const Left = () => (
 );
 
 const Right = (props) => (
-  <Col className="Login__right" xs={6}>
+  <Col className="Login__right" xs={12} md={6}>
     <div>
       <h1 className="logo">
         <FontAwesomeIcon icon={faHandPeace} />
