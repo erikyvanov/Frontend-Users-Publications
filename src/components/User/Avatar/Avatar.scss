@@ -3,3 +3,9 @@
   border: 5px solid black;
   border-radius: 50%;
 }
+
+@media screen and (max-width: 767px) {
+  .avatar {
+    height: 15vw;
+  }
+}

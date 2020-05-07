@@ -1,0 +1,44 @@
+@import "../../../scss/index.scss";
+
+.user-info {
+  background-color: $red;
+  padding: 2vw;
+
+  &__description {
+    white-space: pre-line;
+    color: $text-i1;
+    font-size: 30px;
+  }
+
+  &__info {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+
+    &_data {
+      display: flex;
+      color: $text-i2;
+      margin: 0 15px;
+      h4 {
+        position: relative;
+        top: -3px;
+        font-size: 20px;
+        margin-left: 5px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .user-info {
+    &__description {
+      font-size: 20px;
+    }
+
+    &__info_data {
+      h4 {
+        font-size: 15px;
+      }
+    }
+  }
+}

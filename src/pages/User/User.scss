@@ -39,3 +39,21 @@
     background-color: $primary-gray;
   }
 }
+
+@media screen and (max-width: 767px) {
+  .user {
+    &__title {
+      h2 {
+        font-size: 7vw;
+      }
+    }
+
+    &__btns {
+      button {
+        position: relative;
+        top: 15vw;
+        left: 3vw;
+      }
+    }
+  }
+}

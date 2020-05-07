@@ -1,8 +1,7 @@
 import React from "react";
+import "./Home.scss";
 
 import BasicLayout from "../../layout/BasicLayout";
-
-import "./Home.scss";
 
 export default function Home() {
   return (
