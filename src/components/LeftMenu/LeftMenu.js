@@ -44,7 +44,7 @@ export default function LeftMenu() {
         </Link>
         <Link onClick={logout} to="/" className="left-menu__logout">
           <FontAwesomeIcon icon={faPowerOff} />
-          Cerrar Sesión
+          Salir
         </Link>
       </div>
     </div>

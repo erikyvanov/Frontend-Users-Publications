@@ -10,10 +10,10 @@ export default function BasicLayout(props) {
   return (
     <Container className="basic-layout" fluid>
       <Row>
-        <Col xs={3} className="basic-layout__menu">
+        <Col md={3} className="basic-layout__menu">
           <LeftMenu />
         </Col>
-        <Col xs={9} className="basic-layout__content">
+        <Col md={9} className="basic-layout__content">
           {children}
         </Col>
       </Row>

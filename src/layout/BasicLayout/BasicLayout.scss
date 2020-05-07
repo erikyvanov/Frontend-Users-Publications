@@ -26,3 +26,12 @@
     }
   }
 }
+
+@media screen and (max-width: 767px) {
+  .basic-layout {
+    &__menu {
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
