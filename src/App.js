@@ -9,10 +9,16 @@ import Login from "./pages/Login";
 
 export default function App() {
   const [user, setUser] = useState(null);
+  const [inicio, setInicio] = useState(true);
 
   useEffect(() => {
     setUser(isUserLogedAPI());
+    setInicio(false);
   }, []);
+
+  if (inicio) {
+    return null;
+  }
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>
