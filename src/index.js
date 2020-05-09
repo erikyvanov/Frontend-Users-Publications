@@ -5,6 +5,8 @@ import * as serviceWorker from "./serviceWorker";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
+import "react-datepicker/dist/react-datepicker.css";
+
 import "./index.scss";
 
 ReactDOM.render(<App />, document.getElementById("root"));

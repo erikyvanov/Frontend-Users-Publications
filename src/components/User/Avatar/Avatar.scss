@@ -1,5 +1,6 @@
 .avatar {
   height: 10vw;
+  width: 10vw;
   border: 5px solid black;
   border-radius: 50%;
 }
@@ -7,5 +8,6 @@
 @media screen and (max-width: 767px) {
   .avatar {
     height: 15vw;
+    width: 15vw;
   }
 }

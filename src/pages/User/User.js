@@ -10,10 +10,13 @@ import BasicLayout from "../../layout/BasicLayout";
 import Avatar from "../../components/User/Avatar";
 import UserInfo from "../../components/User/UserInfo";
 import useAuth from "../../hooks/useAuth";
+import ConfigModal from "../../components/modals/ConfigModal";
+import EditUserForm from "../../components/EditUserForm";
 
 function User(props) {
   const { params } = props.match;
   const [user, setUser] = useState(null);
+  const [show, setShow] = useState(false);
 
   const loggetUser = useAuth();
 
@@ -42,7 +45,9 @@ function User(props) {
             </h2>
             <div className="user__btns">
               {loggetUser.user._id === user.id ? (
-                <Button variant="warning">Editar perfil</Button>
+                <Button variant="warning" onClick={() => setShow(true)}>
+                  Editar perfil
+                </Button>
               ) : (
                 <Button variant="success">Seguir</Button>
               )}
@@ -53,6 +58,9 @@ function User(props) {
           <div>Posts</div>
         </>
       ) : null}
+      <ConfigModal show={show} setShow={setShow} title="Editar perfil">
+        <EditUserForm user={user} setShow={setShow} />
+      </ConfigModal>
     </BasicLayout>
   );
 }
