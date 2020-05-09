@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import "./EditUserForm.scss";
 
-import { Form, Col, Button } from "react-bootstrap";
+import { Form, Col, Button, Spinner } from "react-bootstrap";
 import { useDropzone } from "react-dropzone";
 import DatePicker from "react-datepicker";
 import { toast } from "react-toastify";
@@ -16,6 +16,7 @@ export default function EditUserForm(props) {
   const { user, setShow } = props;
 
   const [formData, setFormData] = useState(initialData(user));
+  const [loading, setLoading] = useState(false);
   const [avatarURL, setAvatarURL] = useState(
     user?.avatar ? `${API_HOST}/getAvatar?id=${user.id}` : null
   );
@@ -24,11 +25,10 @@ export default function EditUserForm(props) {
   const onDropAvatar = useCallback((acceptedFile) => {
     const file = acceptedFile[0];
     setAvatarURL(URL.createObjectURL(file));
-    console.log(file);
     setAvatarFile(file);
   }, []);
   const { getRootProps, getInputProps } = useDropzone({
-    accept: "image/jpg, image/png",
+    accept: "image/jpeg, image/png",
     noKeyboard: true,
     multiple: false,
     onDrop: onDropAvatar,
@@ -38,17 +38,17 @@ export default function EditUserForm(props) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
 
     if (avatarFile) {
-      uploadAvatarAPI(avatarFile).catch(() => {
+      await uploadAvatarAPI(avatarFile).catch(() => {
         toast.error("No se actualizo el avatar");
       });
     }
 
-    console.log(formData);
-    updateInfoApi(formData)
+    await updateInfoApi(formData)
       .then((response) => {
         if (response.message) {
           toast.error(response.message);
@@ -58,10 +58,9 @@ export default function EditUserForm(props) {
       })
       .catch(() => {
         toast.error("El servidor no esta disponible");
-      })
-      .finally(() => {
-        window.location.reload();
       });
+    setLoading(false);
+    window.location.reload();
   };
   // console.log(user);
   return (
@@ -131,7 +130,11 @@ export default function EditUserForm(props) {
           />
         </Form.Group>
         <Button variant="success" type="submit">
-          Actualizar
+          {loading ? (
+            <Spinner animation="border" variant="light" />
+          ) : (
+            "Actualizar"
+          )}
         </Button>
       </Form>
     </div>
@@ -144,5 +147,4 @@ const initialData = (user) => ({
   location: user.location || "",
   description: user.description || "",
   birthday: user.birthday || "",
-  avatar: user.avatar || "",
 });

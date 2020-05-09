@@ -6,8 +6,6 @@
     display: flex;
     justify-content: center;
 
-    padding: 10px;
-
     h2 {
       color: white;
       font-size: 4vw;
@@ -20,9 +18,9 @@
   &__btns {
     button {
       transition: transfrom, 0.4s;
-      position: relative;
+      position: absolute;
       top: 9vw;
-      left: 6vw;
+      left: 60vw;
 
       font-size: 2vw;
 
@@ -44,15 +42,16 @@
   .user {
     &__title {
       h2 {
-        font-size: 7vw;
+        font-size: 6vw;
       }
     }
 
     &__btns {
       button {
-        position: relative;
-        top: 15vw;
-        left: 3vw;
+        font-size: 3vw;
+        position: absolute;
+        top: 14vw;
+        left: 77%;
       }
     }
   }
