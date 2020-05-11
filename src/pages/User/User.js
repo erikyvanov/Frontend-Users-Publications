@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Button } from "react-bootstrap";
 import { getUserAPI } from "../../api/user";
+import { checkFollow, followAPI, unfollowAPI } from "../../api/follow";
 
 import BasicLayout from "../../layout/BasicLayout";
 import Avatar from "../../components/User/Avatar";
@@ -17,22 +18,59 @@ function User(props) {
   const { params } = props.match;
   const [user, setUser] = useState(null);
   const [show, setShow] = useState(false);
+  const [follow, setFollow] = useState(null);
 
   const loggetUser = useAuth();
 
   useEffect(() => {
-    getUserAPI(params.id)
-      .then((data) => {
-        if (!data.error) {
-          setUser(data);
-        } else {
-          toast.error(data.message);
-        }
+    async function fetchData() {
+      await getUserAPI(params.id)
+        .then((data) => {
+          if (!data.error) {
+            setUser(data);
+          } else {
+            toast.error(data.message);
+          }
+        })
+        .catch(() => {
+          toast.error("El usuario no existe");
+        });
+
+      await checkFollow(params.id)
+        .then((data) => {
+          if (data.status) {
+            setFollow(true);
+          } else {
+            setFollow(false);
+          }
+        })
+        .catch(() => {
+          toast.error("El usuario no existe");
+        });
+    }
+
+    fetchData();
+  }, [params]);
+
+  const followFunc = () => {
+    followAPI(user.id)
+      .then(() => {
+        setFollow(true);
       })
       .catch(() => {
-        toast.error("El usuario no existe");
+        toast.error("Servidor no disponible");
       });
-  }, [params]);
+  };
+
+  const unfollowFunc = () => {
+    unfollowAPI(user.id)
+      .then(() => {
+        setFollow(false);
+      })
+      .catch(() => {
+        toast.error("Servidor no disponible");
+      });
+  };
 
   return (
     <BasicLayout className="user">
@@ -44,13 +82,27 @@ function User(props) {
               {user.name} {user.lastname}
             </h2>
             <div className="user__btns">
-              {loggetUser.user._id === user.id ? (
+              {loggetUser.user._id === user.id && (
                 <Button variant="warning" onClick={() => setShow(true)}>
                   Editar perfil
                 </Button>
-              ) : (
-                <Button variant="success">Seguir</Button>
               )}
+              {follow === null
+                ? null
+                : loggetUser.user._id !== user.id &&
+                  (follow ? (
+                    <Button
+                      variant="danger"
+                      onClick={unfollowFunc}
+                      className="unfollow-button"
+                    >
+                      Dejar de seguir
+                    </Button>
+                  ) : (
+                    <Button variant="success" onClick={followFunc}>
+                      Seguir
+                    </Button>
+                  ))}
             </div>
           </div>
           <UserInfo user={user} />

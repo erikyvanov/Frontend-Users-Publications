@@ -34,13 +34,14 @@
   }
 
   &__info {
-    background-color: $primary-gray;
+    background-color: $red;
   }
 }
 
 @media screen and (max-width: 767px) {
   .user {
     &__title {
+      padding: 8vw 0 0 0;
       h2 {
         font-size: 6vw;
       }
@@ -50,8 +51,8 @@
       button {
         font-size: 3vw;
         position: absolute;
-        top: 14vw;
-        left: 77%;
+        top: 0px;
+        left: 10px;
       }
     }
   }
