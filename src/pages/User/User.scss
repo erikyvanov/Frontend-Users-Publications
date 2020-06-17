@@ -36,6 +36,13 @@
   &__info {
     background-color: $red;
   }
+
+  &__posts {
+    h3 {
+      margin: 10px;
+      font-size: 35px;
+    }
+  }
 }
 
 @media screen and (max-width: 767px) {

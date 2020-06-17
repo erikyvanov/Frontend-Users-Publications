@@ -1,0 +1,40 @@
+.post {
+  border-top: grey 2px solid;
+  padding: 20px;
+
+  &_title {
+    display: flex;
+    align-items: center;
+
+    img {
+      height: 60px;
+    }
+  }
+
+  h4 {
+    margin: 10px 0;
+
+    font-size: 20px;
+    color: gray;
+  }
+
+  p {
+    font-size: 25px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .post {
+    h3 {
+      font-size: 25px;
+    }
+
+    h4 {
+      font-size: 15px;
+    }
+
+    p {
+      font-size: 20px;
+    }
+  }
+}

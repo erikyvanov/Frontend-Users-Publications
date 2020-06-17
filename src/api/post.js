@@ -12,12 +12,20 @@ export function addPostAPI(message) {
     body: JSON.stringify({ message }),
   };
 
+  return fetch(url, params);
+}
+
+export function getPostsAPI(IDUser, page) {
+  const url = `${API_HOST}/posts?id=${IDUser}&page=${page}`;
+
+  const params = {
+    headers: {
+      "Content-Type": "application-json",
+      Authorization: `Bearer${getTokenAPI()}`,
+    },
+  };
+
   return fetch(url, params)
-    .then((response) => {
-      if (response.status >= 200 && response.status < 300) {
-        return { code: response.status, message: "Post enviado" };
-      }
-      return { code: 500, message: response.text() };
-    })
-    .catch(() => ({ code: 500, message: "El servidor no esta disponible" }));
+    .then((response) => response.json())
+    .catch((err) => err);
 }

@@ -20,8 +20,8 @@ export default function PostModal(props) {
 
     addPostAPI(message)
       .then((response) => {
-        if (response?.code >= 200 && response?.code < 300) {
-          toast.success(response.message);
+        if (response.status >= 200 && response.status < 300) {
+          toast.success("Se envio el post");
           setShow(false);
           window.location.reload();
         } else {

@@ -14,13 +14,25 @@ import useAuth from "../../hooks/useAuth";
 import ConfigModal from "../../components/modals/ConfigModal";
 import EditUserForm from "../../components/EditUserForm";
 
+import { getPostsAPI } from "../../api/post";
+import ListPost from "../../components/ListPost/ListPost";
+
 function User(props) {
   const { params } = props.match;
   const [user, setUser] = useState(null);
   const [show, setShow] = useState(false);
   const [follow, setFollow] = useState(null);
+  const [posts, setPosts] = useState(null);
 
   const loggetUser = useAuth();
+
+  useEffect(() => {
+    getPostsAPI(params.id, 1)
+      .then((response) => {
+        setPosts(response);
+      })
+      .catch(() => setPosts([]));
+  }, [params]);
 
   useEffect(() => {
     async function fetchData() {
@@ -107,7 +119,13 @@ function User(props) {
           </div>
           <UserInfo user={user} />
 
-          <div>Posts</div>
+          <div className="user__posts">
+            {posts ? (
+              <ListPost posts={posts} />
+            ) : (
+              <h3>Este usuario no tiene posts</h3>
+            )}
+          </div>
         </>
       ) : null}
       <ConfigModal show={show} setShow={setShow} title="Editar perfil">
