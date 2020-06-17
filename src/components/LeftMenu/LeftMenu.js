@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,16 +15,20 @@ import "./LeftMenu.scss";
 import { logoutAPI } from "../../api/auth";
 import useAuth from "../../hooks/useAuth";
 
+import PostModal from "../modals/PostModal";
+
 export default function LeftMenu() {
+  const [showModal, setShowModal] = useState(false);
+  const { user, setUser } = useAuth();
+
   const logout = () => {
     logoutAPI();
     setUser(null);
   };
 
-  const { user, setUser } = useAuth();
   return (
     <div className="left-menu">
-      <div className="left-menu__logo" onClick={() => console.log("Publicar")}>
+      <div className="left-menu__logo" onClick={() => setShowModal(true)}>
         <FontAwesomeIcon icon={faHandPeace} />
         <h3>Publicar</h3>
       </div>
@@ -47,6 +51,8 @@ export default function LeftMenu() {
           Salir
         </Link>
       </div>
+
+      <PostModal show={showModal} setShow={setShowModal} />
     </div>
   );
 }

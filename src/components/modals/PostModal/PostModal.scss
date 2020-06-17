@@ -1,0 +1,28 @@
+.post-modal {
+  .modal-content {
+    border-radius: 25px;
+    padding: 10px;
+
+    .modal-header {
+      font-size: 30px;
+    }
+
+    textarea {
+      margin: 5px 0 10px;
+      overflow: hidden;
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+
+    .btn-publicar {
+      width: 100%;
+      height: 50px;
+
+      margin-top: 20px;
+
+      border-radius: 20px;
+    }
+  }
+}
