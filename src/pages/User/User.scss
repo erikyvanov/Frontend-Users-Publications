@@ -38,9 +38,23 @@
   }
 
   &__posts {
+    width: 100%;
+
     h3 {
       margin: 10px;
       font-size: 35px;
+    }
+
+    button {
+      display: block;
+      margin: 10px auto;
+      width: 70%;
+      height: 40px;
+    }
+
+    .spinner {
+      display: block;
+      margin: 10px auto;
     }
   }
 }

@@ -3,7 +3,7 @@ import "./User.scss";
 
 import { withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Button } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import { getUserAPI } from "../../api/user";
 import { checkFollow, followAPI, unfollowAPI } from "../../api/follow";
 
@@ -22,17 +22,21 @@ function User(props) {
   const [user, setUser] = useState(null);
   const [show, setShow] = useState(false);
   const [follow, setFollow] = useState(null);
-  const [posts, setPosts] = useState(null);
+
+  const [posts, setPosts] = useState([]);
+  const [page, setPage] = useState(1);
+  const [loadingPosts, setLoadingPosts] = useState(false);
 
   const loggetUser = useAuth();
 
   useEffect(() => {
-    getPostsAPI(params.id, 1)
-      .then((response) => {
-        setPosts(response);
-      })
-      .catch(() => setPosts([]));
-  }, [params]);
+    if (page === 1) {
+      getPostsAPI(params.id, page).then((data) => {
+        setPosts(data);
+        setPage(page + 1);
+      });
+    }
+  }, [params, page, posts]);
 
   useEffect(() => {
     async function fetchData() {
@@ -62,7 +66,25 @@ function User(props) {
     }
 
     fetchData();
+    setPage(1);
   }, [params]);
+
+  const fetchPosts = async () => {
+    setLoadingPosts(true);
+    try {
+      const data = await getPostsAPI(params.id, page);
+      if (data === null) {
+        setLoadingPosts(0);
+      } else {
+        setPosts([...posts, ...data]);
+        setPage(page + 1);
+        setLoadingPosts(false);
+      }
+    } catch (err) {
+      setLoadingPosts(false);
+      toast.error("Error al cargar los posts");
+    }
+  };
 
   const followFunc = () => {
     followAPI(user.id)
@@ -121,7 +143,21 @@ function User(props) {
 
           <div className="user__posts">
             {posts ? (
-              <ListPost posts={posts} />
+              <>
+                <ListPost posts={posts} />
+                {loadingPosts !== 0 &&
+                  (loadingPosts === true ? (
+                    <Spinner
+                      animation="border"
+                      variant="success"
+                      className="spinner"
+                    />
+                  ) : (
+                    <Button onClick={() => fetchPosts()} variant="success">
+                      Ver mas
+                    </Button>
+                  ))}
+              </>
             ) : (
               <h3>Este usuario no tiene posts</h3>
             )}
