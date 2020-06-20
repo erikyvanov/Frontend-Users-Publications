@@ -21,15 +21,23 @@ function Users(props) {
 
   useEffect(() => {
     setLoading(true);
-    setUsers(null);
+    if (params.page === 1) {
+      setUsers(null);
+    }
     getUsersAPIv2(params.type, params.page, params.search).then((data) => {
       if (data === null) {
         setLoading(null);
       } else {
-        setUsers(data);
-        setLoading(false);
+        if (params.page > 1) {
+          setUsers([...users, ...data]);
+          setLoading(false);
+        } else {
+          setUsers(data);
+          setLoading(false);
+        }
       }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params]);
 
   console.log(params);
@@ -50,25 +58,33 @@ function Users(props) {
         <ButtonGroup className="users__buttons">
           <Button
             className={params.type === "new" && "active"}
-            onClick={() => setParams({ ...params, type: "new" })}
+            onClick={() => setParams({ ...params, type: "new", page: 1 })}
           >
             Nuevos
           </Button>
           <Button
             className={params.type === "follow" && "active"}
-            onClick={() => setParams({ ...params, type: "follow" })}
+            onClick={() => setParams({ ...params, type: "follow", page: 1 })}
           >
             Seguidos
           </Button>
         </ButtonGroup>
       </div>
       <div className="users__data">
-        {loading === null ? (
+        {users === null ? (
           <h1>No hay resultados</h1>
         ) : loading ? (
           <Spinner animation="border" variant="success" />
         ) : (
           users?.map((user, idx) => <UsersCard user={user} key={idx} />)
+        )}
+        {loading !== null && (
+          <Button
+            variant="success"
+            onClick={() => setParams({ ...params, page: params.page + 1 })}
+          >
+            Ver mas
+          </Button>
         )}
       </div>
     </BasicLayout>
