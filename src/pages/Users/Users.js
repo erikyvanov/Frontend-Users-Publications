@@ -40,8 +40,6 @@ function Users(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params]);
 
-  console.log(params);
-  console.log(users);
   return (
     <BasicLayout className="users">
       <div className="users__head">

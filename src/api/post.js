@@ -29,3 +29,18 @@ export function getPostsAPI(IDUser, page) {
     .then((response) => response.json())
     .catch((err) => err);
 }
+
+export function getPostFollowAPI(page) {
+  const url = `${API_HOST}/readFollowedPosts?page=${page}`;
+
+  const params = {
+    headers: {
+      "Content-Type": "application-json",
+      Authorization: `Bearer${getTokenAPI()}`,
+    },
+  };
+
+  return fetch(url, params)
+    .then((response) => response.json())
+    .catch((err) => err);
+}
