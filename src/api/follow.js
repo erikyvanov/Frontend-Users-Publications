@@ -58,3 +58,20 @@ export async function getUsersAPI(paramsURL) {
     return err;
   }
 }
+
+// retorna un array con usuarios o null
+export async function getUsersAPIv2(type, page, serach) {
+  const url = `${API_HOST}/listUsers?type=${type}&page=${page}&search=${serach}`;
+  const params = {
+    headers: {
+      Authorization: `Bearer${getTokenAPI()}`,
+    },
+  };
+
+  try {
+    const response = await fetch(url, params);
+    return response.json();
+  } catch (err) {
+    return err;
+  }
+}
