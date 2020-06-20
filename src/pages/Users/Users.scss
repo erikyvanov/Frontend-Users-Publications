@@ -1,0 +1,58 @@
+@import "../../scss/colors";
+
+.users {
+  &__title {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 15px 2vw;
+
+    h1 {
+      color: $primary-l;
+    }
+
+    input {
+      padding: 10px;
+      border-radius: 22px;
+
+      &:focus {
+        outline: 0 !important;
+        outline-offset: 0 !important;
+      }
+    }
+  }
+
+  &__head {
+    background-color: $primary-black;
+  }
+
+  &__buttons {
+    display: flex !important;
+    margin: 10px 0 0;
+
+    .btn.btn-primary {
+      background-color: transparent !important;
+      border: 0;
+      border-radius: 0;
+      font-weight: bold;
+
+      &:hover {
+        background-color: gray !important;
+      }
+
+      &:focus {
+        outline: 0 !important;
+        outline-offset: 0 !important;
+        background-image: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+      }
+
+      &.active {
+        background-color: $primary-l !important;
+
+        color: $primary-black !important;
+      }
+    }
+  }
+}

@@ -18,7 +18,7 @@ export async function checkFollow(userID) {
   }
 }
 
-export async function followAPI(userID) {
+export function followAPI(userID) {
   const url = `${API_HOST}/relation?id=${userID}`;
   const params = {
     method: "POST",
@@ -30,7 +30,7 @@ export async function followAPI(userID) {
   return fetch(url, params);
 }
 
-export async function unfollowAPI(userID) {
+export function unfollowAPI(userID) {
   const url = `${API_HOST}/relation?id=${userID}`;
   const params = {
     method: "DELETE",
@@ -40,4 +40,21 @@ export async function unfollowAPI(userID) {
   };
 
   return fetch(url, params);
+}
+
+// retorna un array con usuarios o null
+export async function getUsersAPI(paramsURL) {
+  const url = `${API_HOST}/listUsers?${paramsURL}`;
+  const params = {
+    headers: {
+      Authorization: `Bearer${getTokenAPI()}`,
+    },
+  };
+
+  try {
+    const response = await fetch(url, params);
+    return response.json();
+  } catch (err) {
+    return err;
+  }
 }
