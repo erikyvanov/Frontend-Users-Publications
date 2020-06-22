@@ -1,0 +1,17 @@
+@import "../../scss//colors";
+
+.cg {
+  margin: 10px 0;
+  a {
+    margin: 0 10px;
+    color: $text-i1;
+
+    &:hover {
+      color: $text-i1;
+    }
+  }
+
+  h2 {
+    font-size: 25px;
+  }
+}

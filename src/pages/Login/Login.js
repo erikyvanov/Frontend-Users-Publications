@@ -5,6 +5,7 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import BasicModal from "../../components/modals/BasicModal";
 import SignUpForm from "../../components/SignUpForm";
 import SignInForm from "../../components/SignInForm";
+import CodeGithub from "../../components/CodeGithub";
 
 import JWT_IMG from "./JWT.png";
 import GO_IMG from "./Go.png";
@@ -73,6 +74,7 @@ const Left = () => (
         <img src={MONGO_IMG} alt="MONGODB_LOGO" />
         Base de datos NoSQL en MongoDB
       </h3>
+      <CodeGithub />
     </div>
   </Col>
 );
