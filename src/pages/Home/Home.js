@@ -37,7 +37,7 @@ export default function Home() {
     <BasicLayout className="home">
       <h1 className="home__title">Inicio</h1>
       {posts === null ? (
-        <h1>No hay posts</h1>
+        <h1>No hay publicaciones</h1>
       ) : (
         <div>
           <ListPost posts={posts} />

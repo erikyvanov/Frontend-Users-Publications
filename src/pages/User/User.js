@@ -82,7 +82,7 @@ function User(props) {
       }
     } catch (err) {
       setLoadingPosts(false);
-      toast.error("Error al cargar los posts");
+      toast.error("Error al cargar las publicaciones");
     }
   };
 
@@ -159,7 +159,7 @@ function User(props) {
                   ))}
               </>
             ) : (
-              <h3>Este usuario no tiene posts</h3>
+              <h3>Este usuario no tiene publicaciones</h3>
             )}
           </div>
         </>

@@ -47,7 +47,7 @@ const Left = () => (
     <div>
       <h1>
         <FontAwesomeIcon icon={faHandPeace} />
-        Users Posts
+        Users Publications
       </h1>
       <h2>
         <FontAwesomeIcon icon={faUsers} />
